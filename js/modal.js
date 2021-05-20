@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
-    const moreElement = document.querySelector('.more'),
+    const moreElements = document.querySelectorAll('.more'),
         modalElement = document.querySelector('.modal');
     
     const openModal = () => {
@@ -10,12 +10,14 @@ window.addEventListener('DOMContentLoaded', () => {
         modalElement.classList.add('hidden');
     };
 
-    moreElement.addEventListener('click', openModal);
-    modalElement.addEventListener('click', (event) => {
-        const target = event.target;
-        if (target.classList.contains('overlay') ||
-            target.classList.contains('modal__close')) {
-            closeModal()
-        }
+    moreElements.forEach(more => {
+        more.addEventListener('click', openModal);
+        modalElement.addEventListener('click', (event) => {
+            const target = event.target;
+            if (target.classList.contains('overlay') ||
+                target.classList.contains('modal__close')) {
+                closeModal()
+            }
+        });
     });
 });
